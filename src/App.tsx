@@ -1,21 +1,15 @@
-import { Layout, List } from './components'
+import { Col, Row } from 'antd'
+import { Layout } from './components'
+import { User } from './modules'
 
 function App() {
   return (
     <Layout>
-      <List
-        modulConfiguration={{
-          title: 'User',
-          apiUrl: 'users',
-        }}
-        renderContent={({ data, index }) => {
-          return (
-            <div key={index}>
-              {data?.name ?? '-'}
-            </div>
-          );
-        }}
-      />
+      <Row gutter={[8, 8]}>
+        <Col xs={24} sm={24} md={12} lg={8} xl={6} xxl={4}>
+          <User />
+        </Col>
+      </Row>
     </Layout>
   )
 }

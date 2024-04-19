@@ -1,10 +1,8 @@
-import { List as AntdList, Button, ListProps, Typography } from "antd";
+import { List as AntdList, Button, Card, CardProps, ListProps } from "antd";
 import { useEffect, useState } from "react";
 import { ModulEntity } from "../../entities";
 import { getData } from "../../lib";
 import { UndoOutlined, SyncOutlined } from '@ant-design/icons';
-
-const { Title } = Typography;
 
 interface RenderContentProps {
   data: any;
@@ -13,12 +11,13 @@ interface RenderContentProps {
 
 interface Props {
   listProps?: ListProps<any>;
+  cardProps?: CardProps;
   renderContent(props: RenderContentProps): any;
   modulConfiguration: ModulEntity;
 }
 
 export function List(props: Props) {
-  const { listProps = {}, renderContent, modulConfiguration } = props;
+  const { listProps = {}, renderContent, modulConfiguration, cardProps = {} } = props;
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -34,22 +33,30 @@ export function List(props: Props) {
   }, []);
 
   return (
-    <AntdList
-      header={(
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
-          <Title level={2} style={{ fontSize: '14px' }}>{modulConfiguration?.title}</Title>
-          <Button icon={loading ? <SyncOutlined spin /> : <UndoOutlined />} size="small" shape="circle" onClick={generateData}></Button>
-        </div>
+    <Card
+      size="small"
+      title={modulConfiguration?.title}
+      extra={(
+        <Button icon={loading ? <SyncOutlined spin /> : <UndoOutlined />}
+          size="small"
+          shape="circle"
+          onClick={generateData}
+        />
       )}
-      loading={loading}
-      itemLayout="horizontal"
-      dataSource={data}
-      {...listProps}
-      renderItem={(data, index) => (
-        <AntdList.Item>
-          {renderContent({ data, index })}
-        </AntdList.Item>
-      )}
-    />
+      {...cardProps}
+    >
+      <AntdList
+        size="small"
+        loading={loading}
+        itemLayout="horizontal"
+        dataSource={data}
+        {...listProps}
+        renderItem={(data, index) => (
+          <AntdList.Item>
+            {renderContent({ data, index })}
+          </AntdList.Item>
+        )}
+      />
+    </Card>
   );
 }

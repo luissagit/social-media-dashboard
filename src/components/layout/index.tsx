@@ -12,10 +12,10 @@ export function Layout(props: Props) {
 
   return (
     <AntdLayout>
-      <Header>
+      <Header style={{ position: 'fixed', width: '100vw' }}>
         <Title style={{ fontSize: '24px', color: 'white' }}>Social Media Dashboard</Title>
       </Header>
-      <Content style={{ minHeight: '80vh', padding: '20px' }}>
+      <Content style={{ minHeight: '100vh', padding: '85px 20px 20px 20px' }}>
         {children}
       </Content>
     </AntdLayout>
