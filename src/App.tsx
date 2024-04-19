@@ -1,6 +1,10 @@
+import { Layout } from './components'
+
 function App() {
   return (
-    <div></div>
+    <Layout>
+      Tes
+    </Layout>
   )
 }
 
