@@ -1,8 +1,6 @@
-import { Avatar, Image, List, Modal, ModalProps, Select, Spin, Typography } from "antd";
+import { Image, List, Modal, ModalProps, Select, Spin } from "antd";
 import { useEffect, useState } from "react";
 import { getData } from "../../../lib";
-
-const { Title } = Typography;
 
 interface Props {
   modalProps?: ModalProps;
