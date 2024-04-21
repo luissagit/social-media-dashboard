@@ -1,8 +1,7 @@
-import { Avatar, List as AntdList, Button } from "antd";
+import { Avatar, List as AntdList } from "antd";
 import { List } from "../../components";
 import { useRecoilState } from "recoil";
 import { userState } from "../../lib";
-import { CameraOutlined } from "@ant-design/icons";
 
 export function User() {
   const [, setUser] = useRecoilState<any>(userState);
@@ -21,13 +20,10 @@ export function User() {
       }}
       renderContent={({ data, index }) => {
         return (
-          <div style={{ display: 'flex', width: '100%' }}>
-            <AntdList.Item.Meta
-              avatar={<Avatar src={`https://api.dicebear.com/7.x/miniavs/svg?seed=${index}`} />}
-              title={data?.name}
-            />
-            <Button size="small" icon={<CameraOutlined />} />
-          </div>
+          <AntdList.Item.Meta
+            avatar={<Avatar src={`https://api.dicebear.com/7.x/miniavs/svg?seed=${index}`} />}
+            title={data?.name}
+          />
         );
       }}
     />
